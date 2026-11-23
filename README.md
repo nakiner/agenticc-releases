@@ -5,7 +5,7 @@ It asks before it writes or runs anything, runs commands in an operating-system 
 and records every step so an interrupted turn can be resumed.
 
 This repository holds the releases and the download page,
-[nakiner.github.io/agenticc-releases](https://nakiner.github.io/agenticc-releases/).
+[agenticc.hoolie.io](https://agenticc.hoolie.io/).
 The source is not published here.
 
 ## Install
