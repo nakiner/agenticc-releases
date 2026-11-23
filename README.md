@@ -27,7 +27,7 @@ Later releases: `agenticc update`; the app updates itself.
 | `agenticc-<version>-macos.zip`, `agenticc-update.json` | The app's in-app update and its signed manifest |
 | `SHA256SUMS`, `VERSION`, `install.sh` | Checksums, the version, the installer |
 
-Benchmarks against Claude Code, Codex CLI and Hermes, with every task's prompt and hidden
-check and the raw results: [benchmarks/](benchmarks/).
+Benchmarks against Claude Code, Codex CLI and Hermes, the tasks and the raw results:
+[benchmarks/](benchmarks/).
 
 Released under the MIT license.
