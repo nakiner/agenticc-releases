@@ -105,13 +105,30 @@ h2 { font-size: 26px; letter-spacing: -0.02em; margin: 0 0 8px; }
 .stat-n { display: block; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .stat-l { display: block; color: var(--muted); font-size: 14px; margin-top: 4px; }
 .bench h3 { margin-bottom: 14px; }
-.bars { display: grid; gap: 11px; }
+.bars { display: grid; gap: 14px; }
 .bar-row { display: grid; grid-template-columns: minmax(0, 1fr) 96px; grid-template-areas: "name val" "bar bar"; gap: 5px 10px; align-items: baseline; }
 .bar-name { grid-area: name; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .bar-name em { font-style: normal; color: var(--faint); font-size: 12.5px; margin-left: 6px; }
 .bar-val { grid-area: val; text-align: right; font-size: 13.5px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .bar { grid-area: bar; height: 8px; border-radius: 4px; background: color-mix(in srgb, var(--ink) 7%, transparent); overflow: hidden; }
 .bar i { display: block; height: 100%; border-radius: 4px; background: var(--accent); width: calc(var(--v) / var(--max) * 100%); min-width: 3px; }
+.panel-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; margin-bottom: 14px; }
+.panel-head h3 { margin: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--muted); }
+.key { display: inline-flex; align-items: center; gap: 6px; }
+.key i { width: 10px; height: 10px; border-radius: 3px; background: var(--bar); }
+.a { --bar: var(--accent); } .b { --bar: color-mix(in srgb, var(--ink) 42%, transparent); } .c { --bar: color-mix(in srgb, var(--ink) 20%, transparent); }
+.task { display: grid; gap: 4px; }
+.task .bar-name, .gbar .bar, .gbar .bar-val { grid-area: auto; }
+.task .bar-name { margin-bottom: 1px; }
+.gbar { display: grid; grid-template-columns: minmax(0, 1fr) 104px; gap: 10px; align-items: center; }
+.gbar .bar { height: 7px; }
+.gbar .bar i { background: var(--bar); }
+.gbar.a .bar-val { color: var(--ink); font-weight: 600; }
+.totals { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.tot b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.tot.a b { color: var(--accent); }
+.stat-n small { font-size: 16px; font-weight: 500; color: var(--faint); letter-spacing: 0; }
 .bench-note { color: var(--faint); font-size: 13.5px; margin: 14px 0 0; }
 
 footer { border-top: 1px solid var(--line); padding: 30px 0 50px; color: var(--faint); font-size: 14px; }
@@ -262,41 +279,43 @@ footer a { color: var(--muted); }
 
     <section id="benchmarks">
       <h2>Benchmarks</h2>
-      <p class="section-lede">Seven Go repair tasks of three sizes, each graded by a hidden test the agent never sees. Every task ran three times on agenticc 0.8.0, one at a time on an idle machine; bars show the median cost, priced from the tokens the provider reported at list price.</p>
+      <p class="section-lede">Seven Go repair tasks of three sizes, each graded by a hidden test the agent never sees, run with the same model, account and harness for every agent. Bars show the median cost per task, priced from the tokens each agent reported at list price; the figure beside each bar is cost and time.</p>
       <div class="stats">
-        <div class="stat"><span class="stat-n">$2.98</span><span class="stat-l">all seven tasks on Opus 5.5</span></div>
-        <div class="stat"><span class="stat-n">$0.96</span><span class="stat-l">all seven tasks on GPT 6.1 Sol</span></div>
-        <div class="stat"><span class="stat-n">86–97%</span><span class="stat-l">of input served from the prompt cache (Opus 5.5)</span></div>
+        <div class="stat"><span class="stat-n">$2.98 <small>vs $3.86</small></span><span class="stat-l">all seven tasks on Opus 5.5: agenticc against Claude Code, 23% less</span></div>
+        <div class="stat"><span class="stat-n">$0.96 <small>vs $1.92</small></span><span class="stat-l">on GPT 6.1 Sol: agenticc against Codex CLI, half the cost (Hermes: $2.05)</span></div>
+        <div class="stat"><span class="stat-n">848 s <small>vs 1719 s</small></span><span class="stat-l">all seven tasks on Opus 5.5: agenticc against Claude Code</span></div>
       </div>
       <div class="two bench">
         <div class="card">
-          <h3>Opus 5.5</h3>
-          <div class="bars" style="--max:1.22">
-            <div class="bar-row"><span class="bar-name">config-port <em>short</em></span><span class="bar"><i style="--v:0.029"></i></span><span class="bar-val">$0.03 · 9 s</span></div>
-            <div class="bar-row"><span class="bar-name">strip-line-ending <em>short</em></span><span class="bar"><i style="--v:0.023"></i></span><span class="bar-val">$0.02 · 8 s</span></div>
-            <div class="bar-row"><span class="bar-name">mcp-added-tools <em>medium</em></span><span class="bar"><i style="--v:0.342"></i></span><span class="bar-val">$0.34 · 79 s</span></div>
-            <div class="bar-row"><span class="bar-name">verifier-checks-default <em>medium</em></span><span class="bar"><i style="--v:0.252"></i></span><span class="bar-val">$0.25 · 66 s</span></div>
-            <div class="bar-row"><span class="bar-name">local-launcher-scope <em>long</em></span><span class="bar"><i style="--v:0.189"></i></span><span class="bar-val">$0.19 · 54 s</span></div>
-            <div class="bar-row"><span class="bar-name">summary-on-cached-conversation <em>long</em></span><span class="bar"><i style="--v:1.198"></i></span><span class="bar-val">$1.20 · 394 s</span></div>
-            <div class="bar-row"><span class="bar-name">workspace-resource-fencing <em>long</em></span><span class="bar"><i style="--v:0.942"></i></span><span class="bar-val">$0.94 · 238 s</span></div>
+          <div class="panel-head"><h3>Opus 5.5</h3><div class="legend"><span class="key a"><i></i>agenticc</span><span class="key b"><i></i>Claude Code</span></div></div>
+          <div class="bars" style="--max:1.56">
+            <div class="task"><span class="bar-name">config-port <em>short</em></span><div class="gbar a"><span class="bar"><i style="--v:0.0291"></i></span><span class="bar-val">$0.03 · 9 s</span></div><div class="gbar b"><span class="bar"><i style="--v:0.0799"></i></span><span class="bar-val">$0.08 · 13 s</span></div></div>
+            <div class="task"><span class="bar-name">strip-line-ending <em>short</em></span><div class="gbar a"><span class="bar"><i style="--v:0.0230"></i></span><span class="bar-val">$0.02 · 8 s</span></div><div class="gbar b"><span class="bar"><i style="--v:0.0713"></i></span><span class="bar-val">$0.07 · 12 s</span></div></div>
+            <div class="task"><span class="bar-name">mcp-added-tools <em>medium</em></span><div class="gbar a"><span class="bar"><i style="--v:0.3423"></i></span><span class="bar-val">$0.34 · 79 s</span></div><div class="gbar b"><span class="bar"><i style="--v:0.4937"></i></span><span class="bar-val">$0.49 · 299 s</span></div></div>
+            <div class="task"><span class="bar-name">verifier-checks-default <em>medium</em></span><div class="gbar a"><span class="bar"><i style="--v:0.2518"></i></span><span class="bar-val">$0.25 · 66 s</span></div><div class="gbar b"><span class="bar"><i style="--v:0.3167"></i></span><span class="bar-val">$0.32 · 81 s</span></div></div>
+            <div class="task"><span class="bar-name">local-launcher-scope <em>long</em></span><div class="gbar a"><span class="bar"><i style="--v:0.1886"></i></span><span class="bar-val">$0.19 · 54 s</span></div><div class="gbar b"><span class="bar"><i style="--v:0.3062"></i></span><span class="bar-val">$0.31 · 193 s</span></div></div>
+            <div class="task"><span class="bar-name">summary-on-cached-conversation <em>long</em></span><div class="gbar a"><span class="bar"><i style="--v:1.1983"></i></span><span class="bar-val">$1.20 · 394 s</span></div><div class="gbar b"><span class="bar"><i style="--v:1.5547"></i></span><span class="bar-val">$1.55 · 763 s</span></div></div>
+            <div class="task"><span class="bar-name">workspace-resource-fencing <em>long</em></span><div class="gbar a"><span class="bar"><i style="--v:0.9422"></i></span><span class="bar-val">$0.94 · 238 s</span></div><div class="gbar b"><span class="bar"><i style="--v:1.0354"></i></span><span class="bar-val">$1.04 · 358 s</span></div></div>
           </div>
-          <p class="bench-note">19 of 21 runs passed. Both misses were on the summary task, where the model's own code failed the hidden test; a rerun of that task passed 3 of 3.</p>
+          <div class="totals"><span class="tot a"><b>$2.98</b> agenticc</span><span class="tot b"><b>$3.86</b> Claude Code</span></div>
+          <p class="bench-note">agenticc passed 19 of 21 runs: both misses were on the summary task, where the model's own code failed the hidden test, and a rerun of that task passed 3 of 3. Claude Code passed 21 of 21.</p>
         </div>
         <div class="card">
-          <h3>GPT 6.1 Sol</h3>
-          <div class="bars" style="--max:1.22">
-            <div class="bar-row"><span class="bar-name">config-port <em>short</em></span><span class="bar"><i style="--v:0.018"></i></span><span class="bar-val">$0.02 · 17 s</span></div>
-            <div class="bar-row"><span class="bar-name">strip-line-ending <em>short</em></span><span class="bar"><i style="--v:0.015"></i></span><span class="bar-val">$0.02 · 12 s</span></div>
-            <div class="bar-row"><span class="bar-name">mcp-added-tools <em>medium</em></span><span class="bar"><i style="--v:0.154"></i></span><span class="bar-val">$0.15 · 106 s</span></div>
-            <div class="bar-row"><span class="bar-name">verifier-checks-default <em>medium</em></span><span class="bar"><i style="--v:0.085"></i></span><span class="bar-val">$0.09 · 101 s</span></div>
-            <div class="bar-row"><span class="bar-name">local-launcher-scope <em>long</em></span><span class="bar"><i style="--v:0.074"></i></span><span class="bar-val">$0.07 · 92 s</span></div>
-            <div class="bar-row"><span class="bar-name">summary-on-cached-conversation <em>long</em></span><span class="bar"><i style="--v:0.382"></i></span><span class="bar-val">$0.38 · 477 s</span></div>
-            <div class="bar-row"><span class="bar-name">workspace-resource-fencing <em>long</em></span><span class="bar"><i style="--v:0.234"></i></span><span class="bar-val">$0.23 · 294 s</span></div>
+          <div class="panel-head"><h3>GPT 6.1 Sol</h3><div class="legend"><span class="key a"><i></i>agenticc</span><span class="key b"><i></i>Codex CLI</span><span class="key c"><i></i>Hermes</span></div></div>
+          <div class="bars" style="--max:1.56">
+            <div class="task"><span class="bar-name">config-port <em>short</em></span><div class="gbar a"><span class="bar"><i style="--v:0.0176"></i></span><span class="bar-val">$0.02 · 17 s</span></div><div class="gbar b"><span class="bar"><i style="--v:0.0348"></i></span><span class="bar-val">$0.03 · 27 s</span></div><div class="gbar c"><span class="bar"><i style="--v:0.0476"></i></span><span class="bar-val">$0.05 · 29 s</span></div></div>
+            <div class="task"><span class="bar-name">strip-line-ending <em>short</em></span><div class="gbar a"><span class="bar"><i style="--v:0.0150"></i></span><span class="bar-val">$0.01 · 12 s</span></div><div class="gbar b"><span class="bar"><i style="--v:0.0272"></i></span><span class="bar-val">$0.03 · 17 s</span></div><div class="gbar c"><span class="bar"><i style="--v:0.0422"></i></span><span class="bar-val">$0.04 · 51 s</span></div></div>
+            <div class="task"><span class="bar-name">mcp-added-tools <em>medium</em></span><div class="gbar a"><span class="bar"><i style="--v:0.1538"></i></span><span class="bar-val">$0.15 · 106 s</span></div><div class="gbar b"><span class="bar"><i style="--v:0.3345"></i></span><span class="bar-val">$0.33 · 347 s</span></div><div class="gbar c"><span class="bar"><i style="--v:0.2828"></i></span><span class="bar-val">$0.28 · 449 s</span></div></div>
+            <div class="task"><span class="bar-name">verifier-checks-default <em>medium</em></span><div class="gbar a"><span class="bar"><i style="--v:0.0853"></i></span><span class="bar-val">$0.09 · 101 s</span></div><div class="gbar b"><span class="bar"><i style="--v:0.3470"></i></span><span class="bar-val">$0.35 · 368 s</span></div><div class="gbar c"><span class="bar"><i style="--v:0.3356"></i></span><span class="bar-val">$0.34 · 469 s</span></div></div>
+            <div class="task"><span class="bar-name">local-launcher-scope <em>long</em></span><div class="gbar a"><span class="bar"><i style="--v:0.0736"></i></span><span class="bar-val">$0.07 · 92 s</span></div><div class="gbar b"><span class="bar"><i style="--v:0.1326"></i></span><span class="bar-val">$0.13 · 118 s</span></div><div class="gbar c"><span class="bar"><i style="--v:0.2186"></i></span><span class="bar-val">$0.22 · 200 s</span></div></div>
+            <div class="task"><span class="bar-name">summary-on-cached-conversation <em>long</em></span><div class="gbar a"><span class="bar"><i style="--v:0.3820"></i></span><span class="bar-val">$0.38 · 477 s</span></div><div class="gbar b"><span class="bar"><i style="--v:0.6495"></i></span><span class="bar-val">$0.65 · 546 s</span></div><div class="gbar c"><span class="bar"><i style="--v:0.7229"></i></span><span class="bar-val">$0.72 · 1297 s</span></div></div>
+            <div class="task"><span class="bar-name">workspace-resource-fencing <em>long</em></span><div class="gbar a"><span class="bar"><i style="--v:0.2344"></i></span><span class="bar-val">$0.23 · 294 s</span></div><div class="gbar b"><span class="bar"><i style="--v:0.3903"></i></span><span class="bar-val">$0.39 · 360 s</span></div><div class="gbar c"><span class="bar"><i style="--v:0.4001"></i></span><span class="bar-val">$0.40 · 457 s</span></div></div>
           </div>
-          <p class="bench-note">21 of 21 runs passed.</p>
+          <div class="totals"><span class="tot a"><b>$0.96</b> agenticc</span><span class="tot b"><b>$1.92</b> Codex CLI</span><span class="tot c"><b>$2.05</b> Hermes</span></div>
+          <p class="bench-note">agenticc and Codex CLI passed 21 of 21 runs, Hermes 7 of 7.</p>
         </div>
       </div>
-      <p class="bench-note" style="margin-top:16px">Measured 23 November 2026. Both panels share one scale, so bar lengths compare across models. The tasks come from agenticc's own history, so the numbers describe these tasks, not every codebase.</p>
+      <p class="bench-note" style="margin-top:16px">agenticc 0.8.0 was measured on 23 November 2026, three runs per task. Claude Code and Codex CLI are the latest reference values, from 21 November (three runs per task); Hermes v0.21.5 is from 13 November (one run per task). Times also reflect each provider's speed on the day; costs are steadier. Codex CLI ran with its user's memory and skills loaded, which adds requests. Both panels share one scale. The tasks come from agenticc's own history, so the numbers describe these tasks, not every codebase.</p>
     </section>
 
     <section id="setup">
