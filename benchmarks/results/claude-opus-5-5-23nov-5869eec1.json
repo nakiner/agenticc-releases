@@ -1,0 +1,86 @@
+[
+ {
+  "size": "short",
+  "task": "config-port",
+  "agent": "agenticc",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.0291,
+  "cost_low": 0.0275,
+  "cost_high": 0.0306,
+  "wall": 9.3,
+  "requests": 2
+ },
+ {
+  "size": "short",
+  "task": "strip-line-ending",
+  "agent": "agenticc",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.023,
+  "cost_low": 0.0223,
+  "cost_high": 0.0233,
+  "wall": 7.8,
+  "requests": 2
+ },
+ {
+  "size": "medium",
+  "task": "mcp-added-tools",
+  "agent": "agenticc",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.3423,
+  "cost_low": 0.315,
+  "cost_high": 0.3451,
+  "wall": 79.2,
+  "requests": 15
+ },
+ {
+  "size": "medium",
+  "task": "verifier-checks-default",
+  "agent": "agenticc",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.2518,
+  "cost_low": 0.2093,
+  "cost_high": 0.3149,
+  "wall": 65.5,
+  "requests": 12
+ },
+ {
+  "size": "long",
+  "task": "local-launcher-scope",
+  "agent": "agenticc",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.1886,
+  "cost_low": 0.1471,
+  "cost_high": 0.2102,
+  "wall": 54.3,
+  "requests": 6
+ },
+ {
+  "size": "long",
+  "task": "summary-on-cached-conversation",
+  "agent": "agenticc",
+  "runs": 3,
+  "passed": 1,
+  "cost": 1.1983,
+  "cost_low": 1.1577,
+  "cost_high": 1.8924,
+  "wall": 393.9,
+  "requests": 25
+ },
+ {
+  "size": "long",
+  "task": "workspace-resource-fencing",
+  "agent": "agenticc",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.9422,
+  "cost_low": 0.832,
+  "cost_high": 0.9631,
+  "wall": 238.2,
+  "requests": 24
+ }
+]
