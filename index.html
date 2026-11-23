@@ -94,14 +94,35 @@ h2 { font-size: 26px; letter-spacing: -0.02em; margin: 0 0 8px; }
 .providers { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
 .chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 13px; font-size: 14px; color: var(--muted); }
 
+.ticks { list-style: none; margin: 8px 0 0; padding: 0; font-size: 15px; color: var(--muted); }
+.ticks li { position: relative; padding-left: 24px; margin: 7px 0; }
+.ticks li::before { content: ""; position: absolute; left: 2px; top: .5em; width: 10px; height: 5px;
+  border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
+.ticks code { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, transparent); padding: 1px 6px; border-radius: 6px; font-size: 13.5px; }
+
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; }
+.stat-n { display: block; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat-l { display: block; color: var(--muted); font-size: 14px; margin-top: 4px; }
+.bench h3 { margin-bottom: 14px; }
+.bars { display: grid; gap: 11px; }
+.bar-row { display: grid; grid-template-columns: minmax(0, 1fr) 96px; grid-template-areas: "name val" "bar bar"; gap: 5px 10px; align-items: baseline; }
+.bar-name { grid-area: name; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-name em { font-style: normal; color: var(--faint); font-size: 12.5px; margin-left: 6px; }
+.bar-val { grid-area: val; text-align: right; font-size: 13.5px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar { grid-area: bar; height: 8px; border-radius: 4px; background: color-mix(in srgb, var(--ink) 7%, transparent); overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: 4px; background: var(--accent); width: calc(var(--v) / var(--max) * 100%); min-width: 3px; }
+.bench-note { color: var(--faint); font-size: 13.5px; margin: 14px 0 0; }
+
 footer { border-top: 1px solid var(--line); padding: 30px 0 50px; color: var(--faint); font-size: 14px; }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
 footer a { color: var(--muted); }
 
-@media (max-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } .two { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } .two { grid-template-columns: 1fr; } .stat-n { font-size: 26px; } }
 @media (max-width: 560px) {
   .wrap { padding: 0 16px; }
   .grid { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr; }
   nav.links { gap: 16px; } nav.links .hide-sm { display: none; }
   .hero { padding: 44px 0 28px; }
   .cmd { padding: 12px 10px 12px 14px; }
@@ -119,6 +140,7 @@ footer a { color: var(--muted); }
     </a>
     <nav class="links">
       <a href="#features" class="hide-sm">Features</a>
+      <a href="#benchmarks" class="hide-sm">Benchmarks</a>
       <a href="#install">Install</a>
       <a href="https://github.com/nakiner/agenticc-releases/releases">Releases</a>
     </nav>
@@ -186,6 +208,95 @@ footer a { color: var(--muted); }
       <div class="providers">
         <span class="chip">OpenAI</span><span class="chip">Anthropic</span><span class="chip">Claude Code subscription</span><span class="chip">Gemini</span><span class="chip">GitHub Copilot</span><span class="chip">Amazon Bedrock</span><span class="chip">Google Vertex AI</span><span class="chip">OpenAI-compatible and local models</span>
       </div>
+    </section>
+
+    <section id="included">
+      <h2>Everything included</h2>
+      <p class="section-lede">No cloud service in between: agenticc runs on your machine and talks to your provider directly.</p>
+      <div class="two">
+        <div class="card">
+          <h3>The macOS app</h3>
+          <ul class="ticks">
+            <li>Workspaces, scratch chats and split view, on Liquid Glass</li>
+            <li>Any chat in a window of its own; settings in another</li>
+            <li>An approval panel that floats above other apps</li>
+            <li>Approve a short command right from its notification</li>
+            <li>A menu bar icon that keeps turns running with the window closed</li>
+            <li>Changes panel with per-hunk revert, managed git worktrees, rewind</li>
+            <li>⌘K command palette and a global ⌘⇧Space shortcut</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Terminal and automation</h3>
+          <ul class="ticks">
+            <li>A terminal chat with slash commands, queued messages and rewind</li>
+            <li><code>agenticc run</code> for scripts, with <code>--json</code> or a live event stream</li>
+            <li>A local web UI with <code>agenticc serve</code></li>
+            <li>Editors over the Agent Client Protocol</li>
+            <li>agenticc as an MCP server for other agents</li>
+            <li>A GitHub Action for reviews and tasks in CI</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Make it yours</h3>
+          <ul class="ticks">
+            <li>Skills, lifecycle hooks and custom agents</li>
+            <li>MCP servers: tools, resources, prompts and OAuth login</li>
+            <li>WebAssembly plugins limited to the capabilities they declare</li>
+            <li>Sub-agents, and a pair mode with a lead, a sidekick and a reviewer</li>
+            <li>Schedules for recurring tasks</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Stay in control</h3>
+          <ul class="ticks">
+            <li>Per-turn caps on cost, tokens, requests and time</li>
+            <li>Fallback models when a provider fails or a limit runs out</li>
+            <li>Your project's tests and linters run after the last edit, with a verification line on every answer</li>
+            <li>Undo, rewind and rollback from an append-only journal</li>
+            <li>An action whose outcome is unknown is never run twice</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="benchmarks">
+      <h2>Benchmarks</h2>
+      <p class="section-lede">Seven Go repair tasks of three sizes, each graded by a hidden test the agent never sees. Every task ran three times on agenticc 0.8.0, one at a time on an idle machine; bars show the median cost, priced from the tokens the provider reported at list price.</p>
+      <div class="stats">
+        <div class="stat"><span class="stat-n">$2.98</span><span class="stat-l">all seven tasks on Opus 5.5</span></div>
+        <div class="stat"><span class="stat-n">$0.96</span><span class="stat-l">all seven tasks on GPT 6.1 Sol</span></div>
+        <div class="stat"><span class="stat-n">86–97%</span><span class="stat-l">of input served from the prompt cache (Opus 5.5)</span></div>
+      </div>
+      <div class="two bench">
+        <div class="card">
+          <h3>Opus 5.5</h3>
+          <div class="bars" style="--max:1.22">
+            <div class="bar-row"><span class="bar-name">config-port <em>short</em></span><span class="bar"><i style="--v:0.029"></i></span><span class="bar-val">$0.03 · 9 s</span></div>
+            <div class="bar-row"><span class="bar-name">strip-line-ending <em>short</em></span><span class="bar"><i style="--v:0.023"></i></span><span class="bar-val">$0.02 · 8 s</span></div>
+            <div class="bar-row"><span class="bar-name">mcp-added-tools <em>medium</em></span><span class="bar"><i style="--v:0.342"></i></span><span class="bar-val">$0.34 · 79 s</span></div>
+            <div class="bar-row"><span class="bar-name">verifier-checks-default <em>medium</em></span><span class="bar"><i style="--v:0.252"></i></span><span class="bar-val">$0.25 · 66 s</span></div>
+            <div class="bar-row"><span class="bar-name">local-launcher-scope <em>long</em></span><span class="bar"><i style="--v:0.189"></i></span><span class="bar-val">$0.19 · 54 s</span></div>
+            <div class="bar-row"><span class="bar-name">summary-on-cached-conversation <em>long</em></span><span class="bar"><i style="--v:1.198"></i></span><span class="bar-val">$1.20 · 394 s</span></div>
+            <div class="bar-row"><span class="bar-name">workspace-resource-fencing <em>long</em></span><span class="bar"><i style="--v:0.942"></i></span><span class="bar-val">$0.94 · 238 s</span></div>
+          </div>
+          <p class="bench-note">19 of 21 runs passed. Both misses were on the summary task, where the model's own code failed the hidden test; a rerun of that task passed 3 of 3.</p>
+        </div>
+        <div class="card">
+          <h3>GPT 6.1 Sol</h3>
+          <div class="bars" style="--max:1.22">
+            <div class="bar-row"><span class="bar-name">config-port <em>short</em></span><span class="bar"><i style="--v:0.018"></i></span><span class="bar-val">$0.02 · 17 s</span></div>
+            <div class="bar-row"><span class="bar-name">strip-line-ending <em>short</em></span><span class="bar"><i style="--v:0.015"></i></span><span class="bar-val">$0.02 · 12 s</span></div>
+            <div class="bar-row"><span class="bar-name">mcp-added-tools <em>medium</em></span><span class="bar"><i style="--v:0.154"></i></span><span class="bar-val">$0.15 · 106 s</span></div>
+            <div class="bar-row"><span class="bar-name">verifier-checks-default <em>medium</em></span><span class="bar"><i style="--v:0.085"></i></span><span class="bar-val">$0.09 · 101 s</span></div>
+            <div class="bar-row"><span class="bar-name">local-launcher-scope <em>long</em></span><span class="bar"><i style="--v:0.074"></i></span><span class="bar-val">$0.07 · 92 s</span></div>
+            <div class="bar-row"><span class="bar-name">summary-on-cached-conversation <em>long</em></span><span class="bar"><i style="--v:0.382"></i></span><span class="bar-val">$0.38 · 477 s</span></div>
+            <div class="bar-row"><span class="bar-name">workspace-resource-fencing <em>long</em></span><span class="bar"><i style="--v:0.234"></i></span><span class="bar-val">$0.23 · 294 s</span></div>
+          </div>
+          <p class="bench-note">21 of 21 runs passed.</p>
+        </div>
+      </div>
+      <p class="bench-note" style="margin-top:16px">Measured 23 November 2026. Both panels share one scale, so bar lengths compare across models. The tasks come from agenticc's own history, so the numbers describe these tasks, not every codebase.</p>
     </section>
 
     <section id="setup">
