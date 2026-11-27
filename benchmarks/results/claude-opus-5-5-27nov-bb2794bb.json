@@ -5,11 +5,11 @@
   "agent": "agenticc",
   "runs": 3,
   "passed": 3,
-  "cost": 0.0176,
-  "cost_low": 0.0112,
-  "cost_high": 0.0176,
-  "wall": 16.6,
-  "requests": 2
+  "cost": 0.0356,
+  "cost_low": 0.0355,
+  "cost_high": 0.0401,
+  "wall": 9.7,
+  "requests": 3
  },
  {
   "size": "short",
@@ -17,11 +17,11 @@
   "agent": "agenticc",
   "runs": 3,
   "passed": 3,
-  "cost": 0.015,
-  "cost_low": 0.0087,
-  "cost_high": 0.0151,
-  "wall": 11.5,
-  "requests": 2
+  "cost": 0.0293,
+  "cost_low": 0.0293,
+  "cost_high": 0.0306,
+  "wall": 8.6,
+  "requests": 3
  },
  {
   "size": "medium",
@@ -29,11 +29,11 @@
   "agent": "agenticc",
   "runs": 3,
   "passed": 3,
-  "cost": 0.1538,
-  "cost_low": 0.1489,
-  "cost_high": 0.1745,
-  "wall": 106.1,
-  "requests": 10
+  "cost": 0.2493,
+  "cost_low": 0.209,
+  "cost_high": 0.2857,
+  "wall": 56.3,
+  "requests": 8
  },
  {
   "size": "medium",
@@ -41,11 +41,11 @@
   "agent": "agenticc",
   "runs": 3,
   "passed": 3,
-  "cost": 0.0853,
-  "cost_low": 0.0842,
-  "cost_high": 0.1098,
-  "wall": 101.2,
-  "requests": 9
+  "cost": 0.2277,
+  "cost_low": 0.2016,
+  "cost_high": 0.2296,
+  "wall": 47.6,
+  "requests": 10
  },
  {
   "size": "long",
@@ -53,11 +53,11 @@
   "agent": "agenticc",
   "runs": 3,
   "passed": 3,
-  "cost": 0.0736,
-  "cost_low": 0.0719,
-  "cost_high": 0.0739,
-  "wall": 92.1,
-  "requests": 6
+  "cost": 0.1821,
+  "cost_low": 0.1639,
+  "cost_high": 0.192,
+  "wall": 52.9,
+  "requests": 5
  },
  {
   "size": "long",
@@ -65,11 +65,11 @@
   "agent": "agenticc",
   "runs": 3,
   "passed": 3,
-  "cost": 0.382,
-  "cost_low": 0.3803,
-  "cost_high": 0.4514,
-  "wall": 477.3,
-  "requests": 21
+  "cost": 0.977,
+  "cost_low": 0.8988,
+  "cost_high": 1.1777,
+  "wall": 286.3,
+  "requests": 20
  },
  {
   "size": "long",
@@ -77,10 +77,10 @@
   "agent": "agenticc",
   "runs": 3,
   "passed": 3,
-  "cost": 0.2344,
-  "cost_low": 0.19,
-  "cost_high": 0.3223,
-  "wall": 293.7,
-  "requests": 14
+  "cost": 0.7934,
+  "cost_low": 0.7914,
+  "cost_high": 0.893,
+  "wall": 209.6,
+  "requests": 21
  }
 ]

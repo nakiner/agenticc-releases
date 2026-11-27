@@ -142,43 +142,43 @@ Suggested package checks: go test -count=1 ./internal/loop ./internal/runner; go
 
 ## Results
 
-Medians of three runs per task, written as passed runs · time · cost. agenticc 0.8.0 was
-measured on 23 Nov 2026. The other agents are their latest reference values: Claude Code and
-Codex CLI on 21 Nov 2026 (three runs per task), Hermes v0.21.5 on 13 Nov 2026 (one run per
-task). Times also reflect the provider's speed on the day; costs are steadier.
+Medians of three runs per task, written as passed runs · time · cost. agenticc, Claude Code
+and Codex CLI were measured together on 27 Nov 2026; agenticc is the build at commit
+`bb2794bb`, after 0.8.3. Hermes v0.21.5 is its latest reference value, from 13 Nov 2026 (one
+run per task), so its times also reflect the provider's speed on that day.
 
 ### Opus 5.5
 
-| Task | agenticc 0.8.0 | Claude Code |
+| Task | agenticc | Claude Code |
 | --- | --- | --- |
-| `config-port` | 3/3 · 9 s · $0.029 | 3/3 · 13 s · $0.080 |
-| `strip-line-ending` | 3/3 · 8 s · $0.023 | 3/3 · 12 s · $0.071 |
-| `mcp-added-tools` | 3/3 · 79 s · $0.342 | 3/3 · 299 s · $0.494 |
-| `verifier-checks-default` | 3/3 · 66 s · $0.252 | 3/3 · 81 s · $0.317 |
-| `local-launcher-scope` | 3/3 · 54 s · $0.189 | 3/3 · 193 s · $0.306 |
-| `summary-on-cached-conversation` | 1/3 · 394 s · $1.198 | 3/3 · 763 s · $1.555 |
-| `workspace-resource-fencing` | 3/3 · 238 s · $0.942 | 3/3 · 358 s · $1.035 |
-| All seven | **$2.98** · 848 s · 86 requests | **$3.86** · 1719 s · 102 requests |
+| `config-port` | 3/3 · 10 s · $0.036 | 3/3 · 11 s · $0.081 |
+| `strip-line-ending` | 3/3 · 9 s · $0.029 | 3/3 · 8 s · $0.071 |
+| `mcp-added-tools` | 3/3 · 56 s · $0.249 | 3/3 · 112 s · $0.375 |
+| `verifier-checks-default` | 3/3 · 48 s · $0.228 | 3/3 · 65 s · $0.316 |
+| `local-launcher-scope` | 3/3 · 53 s · $0.182 | 3/3 · 105 s · $0.308 |
+| `summary-on-cached-conversation` | 3/3 · 286 s · $0.977 | 2/3 · 470 s · $1.478 |
+| `workspace-resource-fencing` | 3/3 · 210 s · $0.793 | 2/3 · 264 s · $0.859 |
+| All seven | **$2.49** · 671 s · 70 requests | **$3.49** · 1036 s · 91 requests |
 
-agenticc's two failed runs were both on `summary-on-cached-conversation`: the code the model
-wrote left an extra user message ahead of the summary request, which the hidden test rejects.
-A rerun of that task alone passed 3 of 3 (377 s, $1.220).
+Claude Code's two failed runs were one each on `summary-on-cached-conversation` and
+`workspace-resource-fencing`.
 
 ### GPT 6.1 Sol
 
-| Task | agenticc 0.8.0 | Codex CLI | Hermes |
+| Task | agenticc | Codex CLI | Hermes |
 | --- | --- | --- | --- |
-| `config-port` | 3/3 · 17 s · $0.018 | 3/3 · 27 s · $0.035 | 1/1 · 29 s · $0.048 |
-| `strip-line-ending` | 3/3 · 12 s · $0.015 | 3/3 · 17 s · $0.027 | 1/1 · 51 s · $0.042 |
-| `mcp-added-tools` | 3/3 · 106 s · $0.154 | 3/3 · 347 s · $0.335 | 1/1 · 449 s · $0.283 |
-| `verifier-checks-default` | 3/3 · 101 s · $0.085 | 3/3 · 368 s · $0.347 | 1/1 · 469 s · $0.336 |
-| `local-launcher-scope` | 3/3 · 92 s · $0.074 | 3/3 · 118 s · $0.133 | 1/1 · 200 s · $0.219 |
-| `summary-on-cached-conversation` | 3/3 · 477 s · $0.382 | 3/3 · 546 s · $0.649 | 1/1 · 1297 s · $0.723 |
-| `workspace-resource-fencing` | 3/3 · 294 s · $0.234 | 3/3 · 360 s · $0.390 | 1/1 · 457 s · $0.400 |
-| All seven | **$0.96** · 1098 s · 64 requests | **$1.92** · 1784 s · 158 requests | **$2.05** · 2953 s · 147 requests |
+| `config-port` | 3/3 · 20 s · $0.025 | 3/3 · 25 s · $0.033 | 1/1 · 29 s · $0.048 |
+| `strip-line-ending` | 3/3 · 15 s · $0.018 | 3/3 · 19 s · $0.025 | 1/1 · 51 s · $0.042 |
+| `mcp-added-tools` | 3/3 · 132 s · $0.131 | 3/3 · 377 s · $0.369 | 1/1 · 449 s · $0.283 |
+| `verifier-checks-default` | 3/3 · 76 s · $0.097 | 3/3 · 363 s · $0.374 | 1/1 · 469 s · $0.336 |
+| `local-launcher-scope` | 3/3 · 105 s · $0.084 | 3/3 · 115 s · $0.143 | 1/1 · 200 s · $0.219 |
+| `summary-on-cached-conversation` | 3/3 · 531 s · $0.460 | 3/3 · 463 s · $0.585 | 1/1 · 1297 s · $0.723 |
+| `workspace-resource-fencing` | 3/3 · 281 s · $0.211 | 3/3 · 312 s · $0.383 | 1/1 · 457 s · $0.400 |
+| All seven | **$1.03** · 1160 s · 68 requests | **$1.91** · 1675 s · 163 requests | **$2.05** · 2953 s · 147 requests |
 
-Codex CLI ran with its user's memory and 25 skills loaded, which adds requests, so the gap
-to Codex is overstated by an unknown amount.
+Codex CLI ran with its user's memory and skills loaded, which adds requests, so the gap to
+Codex is overstated by an unknown amount. On `summary-on-cached-conversation` agenticc was
+slower than Codex CLI (531 s against 463 s) and cheaper.
 
 ## Raw results
 
@@ -189,6 +189,6 @@ runs, median time, requests and median cost with its low and high.
 
 - Seven tasks, all Go, five from agenticc's own history, which agenticc may have been tuned
   against. Nothing here measures greenfield work, other languages or very long sessions.
-- The other agents were measured on earlier days than agenticc 0.8.0, so time also reflects
-  the provider's speed on the day. Costs are steadier.
+- Hermes was measured on an earlier day than the others, so its time also reflects the
+  provider's speed on that day. Costs are steadier.
 - Cost is at list price. A subscription login is not billed this way.

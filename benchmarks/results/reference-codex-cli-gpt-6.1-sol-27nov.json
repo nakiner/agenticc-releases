@@ -1,0 +1,86 @@
+[
+ {
+  "size": "short",
+  "task": "config-port",
+  "agent": "codex",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.0334,
+  "cost_low": 0.0249,
+  "cost_high": 0.0371,
+  "wall": 24.8,
+  "requests": 4
+ },
+ {
+  "size": "short",
+  "task": "strip-line-ending",
+  "agent": "codex",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.0248,
+  "cost_low": 0.0237,
+  "cost_high": 0.0301,
+  "wall": 19.4,
+  "requests": 5
+ },
+ {
+  "size": "medium",
+  "task": "mcp-added-tools",
+  "agent": "codex",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.3689,
+  "cost_low": 0.3142,
+  "cost_high": 0.5347,
+  "wall": 377.0,
+  "requests": 36
+ },
+ {
+  "size": "medium",
+  "task": "verifier-checks-default",
+  "agent": "codex",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.3745,
+  "cost_low": 0.2578,
+  "cost_high": 0.4036,
+  "wall": 363.4,
+  "requests": 38
+ },
+ {
+  "size": "long",
+  "task": "local-launcher-scope",
+  "agent": "codex",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.1431,
+  "cost_low": 0.1344,
+  "cost_high": 0.2117,
+  "wall": 115.3,
+  "requests": 10
+ },
+ {
+  "size": "long",
+  "task": "summary-on-cached-conversation",
+  "agent": "codex",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.5852,
+  "cost_low": 0.4725,
+  "cost_high": 0.7289,
+  "wall": 462.8,
+  "requests": 38
+ },
+ {
+  "size": "long",
+  "task": "workspace-resource-fencing",
+  "agent": "codex",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.3833,
+  "cost_low": 0.3772,
+  "cost_high": 0.4263,
+  "wall": 312.2,
+  "requests": 32
+ }
+]

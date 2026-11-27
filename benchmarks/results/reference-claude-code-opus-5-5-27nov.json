@@ -1,0 +1,86 @@
+[
+ {
+  "size": "short",
+  "task": "config-port",
+  "agent": "claude",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.0805,
+  "cost_low": 0.0781,
+  "cost_high": 0.0825,
+  "wall": 11.4,
+  "requests": 3
+ },
+ {
+  "size": "short",
+  "task": "strip-line-ending",
+  "agent": "claude",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.0709,
+  "cost_low": 0.0675,
+  "cost_high": 0.0714,
+  "wall": 8.4,
+  "requests": 3
+ },
+ {
+  "size": "medium",
+  "task": "mcp-added-tools",
+  "agent": "claude",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.3749,
+  "cost_low": 0.3619,
+  "cost_high": 0.4072,
+  "wall": 111.8,
+  "requests": 10
+ },
+ {
+  "size": "medium",
+  "task": "verifier-checks-default",
+  "agent": "claude",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.316,
+  "cost_low": 0.3126,
+  "cost_high": 0.3966,
+  "wall": 65.2,
+  "requests": 10
+ },
+ {
+  "size": "long",
+  "task": "local-launcher-scope",
+  "agent": "claude",
+  "runs": 3,
+  "passed": 3,
+  "cost": 0.3083,
+  "cost_low": 0.2581,
+  "cost_high": 0.3436,
+  "wall": 105.0,
+  "requests": 8
+ },
+ {
+  "size": "long",
+  "task": "summary-on-cached-conversation",
+  "agent": "claude",
+  "runs": 3,
+  "passed": 2,
+  "cost": 1.4783,
+  "cost_low": 1.2999,
+  "cost_high": 1.5577,
+  "wall": 469.7,
+  "requests": 34
+ },
+ {
+  "size": "long",
+  "task": "workspace-resource-fencing",
+  "agent": "claude",
+  "runs": 3,
+  "passed": 2,
+  "cost": 0.8593,
+  "cost_low": 0.791,
+  "cost_high": 1.2055,
+  "wall": 264.0,
+  "requests": 23
+ }
+]
